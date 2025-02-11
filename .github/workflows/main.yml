@@ -12,5 +12,7 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
+      - name: Switch Xcode version from 15.2 to 14.1
+        run: sudo xcode-select -s /Applications/Xcode_14.1.0.app
       - name: Check minimum target deployment target of macOS
         run: cat $(xcrun --sdk macosx --show-sdk-path)/SDKSettings.json | grep "MinimumDeploymentTarget"
