@@ -1,0 +1,16 @@
+name: macOS check minimum target
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check minimum target deployment target of macOS
+        run: cat $(xcrun --sdk macosx --show-sdk-path)/SDKSettings.json | grep "MinimumDeploymentTarget"
